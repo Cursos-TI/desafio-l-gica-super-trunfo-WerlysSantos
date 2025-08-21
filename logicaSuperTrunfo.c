@@ -1,9 +1,10 @@
 #include <stdio.h>
 
 int main() {
+    //Declaração das variáveis para receber os dados das cartas
     char estado1[12], estado2[12], cidade1[22], cidade2[22];
 
-    int pontosTuristicos1, pontosTuristicos2;
+    int pontosTuristicos1, pontosTuristicos2, opcao;
     int populacao1, populacao2;
     float area1, area2, pib1, pib2, densidadePopulacional1, pibPerCapita1, densidadePopulacional2, pibPerCapita2, superPoder1, superPoder2;
 
@@ -45,6 +46,7 @@ int main() {
     printf("Digite a quatidade de pontos turísticos: \n");
     scanf("%d", &pontosTuristicos2);
 
+    //Cálculo de densidade populacional e pib per capita para segunda carta
     densidadePopulacional2 = populacao2 / area2;
     pibPerCapita2 = pib2 / populacao2;
 
@@ -55,22 +57,56 @@ int main() {
     printf("Carta 2:\n Estado: %s\n Código: A02\n Nome da Cidade: %s\n População: %d\n Área: %f km²\n PIB: %f\n Número de Pontos Turisticos: %d", estado2, cidade2, populacao2, area2, pib2, pontosTuristicos2);
     printf("\nDensidade Populacional: %.2f hab/km²\n PIB per Capita: %.2f reais\n Super poder: %f\n", densidadePopulacional2, pibPerCapita2, superPoder2);
     
-    printf("****Comparação de cartas:****");
-    printf("\nResultado 1 (Carta 1 venceu) - Resultado 0 (Carta 2 venceu)");
-    printf("\nPopulação: %d", populacao1 > populacao2);
-    printf("\n Área: %f", area1 > area2);
-    printf("\n PIB: %f", pib1 > pib2);
-    printf("\n Pontos turísticos: %d", pontosTuristicos1 > pontosTuristicos2);
-    printf("\n Densidade populacional: %f", densidadePopulacional1 > densidadePopulacional2);
-    printf("\n PIB per capta: %f", pibPerCapita1 > pibPerCapita2);
-    printf("\n Super poder: %f", superPoder1 < superPoder2); 
+    //Menú interativo de comparação das cartas com decisão aninhada
+    printf("\n****Comparação de cartas****");
+    printf("\nOpção 1 - Comparar População");
+    printf("\nOpção 2 - Comparar Àrea");
+    printf("\nOpção 3 - Comparar PIB");
+    printf("\nOpção 4 - Comparar Pontos Turísticos");
+    printf("\nDigite a opção desejada: ");
+    scanf("%d", &opcao);
 
-    printf("\n***Comparação condicional:***");
-    if (populacao1 > populacao2) {
-        printf("\nA carta 1 tem maior população e venceu!");
-    } else {
-        printf("\nA carta 2 tem maior população e venceu!");
-    };
+    switch (opcao){
+        case 1:
+            if (populacao1 > populacao2){
+                printf("\nA carta 1 venceu no combate entre maior número populacional!");
+            } else if (populacao1 < populacao2){
+                printf("\nA carta 2 venceu no combate entre maior número populacional!");
+            } else {
+                printf("\nAs cartas empataram no combate populacional!");
+            }
+            break;
+        case 2:
+            if (area1 > area2){
+                printf("\nA carta 1 venceu no combate entre maior número de área!");
+            } else if (area1 < area2){
+                printf("\nA carta 2 venceu no combate entre maior número de área!");
+            } else {
+                printf("\nAs cartas empataram no combate de área!");
+            }
+            break;
+        case 3:
+            if (pib1 > pib2){
+                printf("\nA carta 1 venceu no combate entre maior número em PIB!");
+            } else if (pib1 < pib2){
+                printf("\nA carta 2 venceu no combate entre maior número em PIB!");
+            } else {
+                printf("\nAs cartas empataram no combate de PIB!");
+            }
+            break;   
+        case 4:
+            if (pontosTuristicos1 > pontosTuristicos2){
+                printf("\nA carta 1 venceu no combate entre maior número de pontos turísticos!");
+            } else if (pontosTuristicos1 < pontosTuristicos2){
+                printf("\nA carta 2 venceu no combate entre maior número de pontos turísticos!");
+            } else {
+                printf("\nAs cartas empataram no combate de pontos turísticos!");
+            }
+            break; 
+        default:
+        printf("\nOpção inválida, tente novamente!");
+    }
+
 
     return 0;
 }
